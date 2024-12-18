@@ -9,7 +9,7 @@ class MarkovGenerator {
             "At", "By", "From", "While", "As", "With", "This", "That", "A", "An",
             "Over", "Under", "During", "Before", "Since", "Because", "Where", "How",
             "Why", "Through", "If", "Then", "Although", "But", "So", "For", "Until",
-            "Upon", "Without", "Despite", "According", "Beyond", "Towards", "Within",
+            "Upon", "Without", "Despite", "According", "Beyond", "Towards", "Within", "To",
             "Among", "Across", "Between", "Afterward", "Meanwhile", "Suddenly", "Perhaps"
         ];
     }
@@ -29,32 +29,42 @@ class MarkovGenerator {
         }
     }
 
-    generateText(lines = 3) {
+    generateText(lines = 3, minWords = 5, maxWords = 20) {
         let text = "";
         let lineCount = 0;
         let currentLine = "";
         let word = this.getStartWord(); // Start with a common word
-
+        let wordCount = 0;
+    
         while (lineCount < lines) {
             if (word === null) {
                 word = this.getStartWord(); // Use start word again for safety
             }
-
+    
             currentLine += (currentLine ? " " : "") + word;
-
-            if (this.stopMarks.some(mark => word.endsWith(mark))) {
+            wordCount++;
+    
+            if (this.stopMarks.some(mark => word.endsWith(mark)) && wordCount >= minWords) {
                 text += currentLine.trim() + "\n"; // Add line break
                 currentLine = "";
+                wordCount = 0;
                 lineCount++;
                 word = this.getStartWord(); // Reset to a start word for the next line
+            } else if (wordCount >= maxWords) {
+                text += currentLine.trim() + "\n"; // Force line break after max words
+                currentLine = "";
+                wordCount = 0;
+                lineCount++;
+                word = this.getStartWord();
             } else {
                 const nextWords = this.chain[word] || [];
                 word = nextWords[Math.floor(Math.random() * nextWords.length)] || null;
             }
         }
-
+    
         return text.trim().replace(/\n/g, "\n\n"); // Ensure double line breaks
     }
+    
 
     getStartWord() {
         const validStartWords = this.commonStartWords.filter(word => this.chain[word]);
