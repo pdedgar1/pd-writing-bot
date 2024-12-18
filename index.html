@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markov Text Generator</title>
+    <script type="module" src="markov.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+        }
+
+        #generateButton {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #generateButton:hover {
+            background-color: #0056b3;
+        }
+
+        #outputContainer {
+            margin-left: 150px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card {
+            background-color: white;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="generateButton">Generate Text</button>
+    <div id="outputContainer"></div>
+
+    <script>
+        document.getElementById('generateButton').addEventListener('click', function () {
+            const outputContainer = document.getElementById('outputContainer');
+    
+            // Generate text using the Markov generator
+            if (window.markovGenerator) {
+                const generatedText = window.markovGenerator.generateText(3); // Generates 3 lines
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.textContent = generatedText;
+                outputContainer.prepend(card);
+            } else {
+                console.error("Markov Generator not loaded yet.");
+            }
+        });
+    </script>    
+
+</body>
+</html>
