@@ -64,13 +64,13 @@
                 const generatedText = window.markovGenerator.generateText(3); // Generates 3 lines
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.textContent = generatedText;
+                card.innerHTML = generatedText.replace(/\n/g, '<br>'); // Preserve line breaks
                 outputContainer.prepend(card);
             } else {
                 console.error("Markov Generator not loaded yet.");
             }
         });
-    </script>    
+    </script>        
 
 </body>
 </html>
