@@ -5,12 +5,15 @@ class MarkovGenerator {
         this.chain = {};
         this.stopMarks = [".", ",", ":", "-", "\n"];
         this.commonStartWords = [
-            "The", "It", "He", "She", "They", "When", "Once", "After", "In", "On",
-            "At", "By", "From", "While", "As", "With", "This", "That", "A", "An",
-            "Over", "Under", "During", "Before", "Since", "Because", "Where", "How",
-            "Why", "Through", "If", "Then", "Although", "But", "So", "For", "Until",
+            "The", "It", "He", "She", "They", "When", "Once", "After", "In", "On", "One",
+            "At", "By", "From", "While", "As", "With", "This", "That", "A", "An", "&", "I",
+            "Over", "Under", "During", "Before", "Since", "Because", "Where", "How", "My", "We",
+            "Why", "Through", "If", "Then", "Although", "But", "So", "For", "Until", "It's",
             "Upon", "Without", "Despite", "According", "Beyond", "Towards", "Within", "To",
-            "Among", "Across", "Between", "Afterward", "Meanwhile", "Suddenly", "Perhaps"
+            "Among", "Across", "Between", "Afterward", "Meanwhile", "Suddenly", "Perhaps",
+            "Maybe", "I'm", "Or", "Each", "And", "All", "You", "What", "Every", "Is", "Our",
+            "There", "Many", "Some", "Though", "Of", "There's", "Not", "Do", "Like", "These", 
+            "His", "Are", "Your", "Me", "No", "Even", "Was", ">"
         ];
     }
 
