@@ -32,7 +32,7 @@ class MarkovGenerator {
         }
     }
 
-    generateText(lines = Math.floor(Math.random() * 6) + 1, minWords = 5, maxWords = 20)
+    generateText(lines = Math.floor(Math.random() * 6) + 1, minWords = 5, maxWords = 20) {
         let text = "";
         let lineCount = 0;
         let currentLine = "";
